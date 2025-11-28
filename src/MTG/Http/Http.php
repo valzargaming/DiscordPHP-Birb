@@ -51,7 +51,7 @@ class Http implements HttpInterface
      *
      * @var string
      */
-    public const BASE_URL = 'https://api.some-random-api.com/facts/bird';
+    public const BASE_URL = 'https://api.some-random-api.com/';
 
     /**
      * Authentication token.
