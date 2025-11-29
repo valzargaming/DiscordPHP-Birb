@@ -27,6 +27,11 @@ class FactsRepository extends AbstractRepository
     /**
      * @inheritDoc
      */
+    protected $discrim = 'fact';
+
+    /**
+     * @inheritDoc
+     */
     protected $endpoints = [
         'bird' => HttpEndpoint::FACTS_BIRD,
     ];

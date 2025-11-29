@@ -28,12 +28,12 @@ class Client extends DiscordClient
      * @inheritDoc
      */
     protected $repositories = [
+        'animals' => AnimalRepository::class,
         'emojis' => EmojiRepository::class,
+        'facts' => FactsRepository::class,
         'guilds' => GuildRepository::class,
         'private_channels' => PrivateChannelRepository::class,
         'sounds' => SoundRepository::class,
         'users' => UserRepository::class,
-        'cards' => AnimalRepository::class,
-        'sets' => FactsRepository::class,
     ];
 }

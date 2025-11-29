@@ -27,6 +27,11 @@ class AnimalRepository extends AbstractRepository
     /**
      * @inheritDoc
      */
+    protected $discrim = 'fact';
+
+    /**
+     * @inheritDoc
+     */
     protected $endpoints = [
         'bird' => HttpEndpoint::ANIMAL_BIRD,
     ];
