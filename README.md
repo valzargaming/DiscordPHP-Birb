@@ -1,10 +1,10 @@
 # DiscordPHP-SRA
 
-A Magic: The Gathering API Library and bot for Discord, built using [DiscordPHP](https://github.com/discord-php/DiscordPHP).
+A Some Random API Library and bot for Discord, built using [DiscordPHP](https://github.com/discord-php/DiscordPHP).
 
 ## Features
 
-- Search for Magic: The Gathering cards
+- Get random facts about animals
 - User installable, usable anywhere
 
 ## Requirements
