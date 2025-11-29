@@ -21,8 +21,6 @@ use React\Promise\PromiseInterface;
 
 /**
  * Repository for managing animals from the SRA API.
- *
- * @since 0.3.0
  */
 class AnimalRepository extends AbstractRepository
 {

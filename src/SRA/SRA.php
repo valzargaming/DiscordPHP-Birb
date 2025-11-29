@@ -25,7 +25,7 @@ use SRA\Repository\FactsRepository;
  *
  * @version 1.0.0
  *
- * @property AnimalRepository $animls
+ * @property AnimalRepository $animals
  * @property FactsRepository  $facts
  */
 class SRA extends Discord

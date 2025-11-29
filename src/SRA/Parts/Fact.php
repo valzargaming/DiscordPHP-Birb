@@ -13,18 +13,33 @@ declare(strict_types=1);
 
 namespace SRA\Parts;
 
+use Discord\Builders\Components\Container;
+use Discord\Builders\Components\MediaGallery;
+use Discord\Builders\Components\TextDisplay;
 use Discord\Parts\Part;
 
 /**
  * A fact returned by the SRA API.
  *
  * @property string $fact The fact.
- *
- * @since 0.1.0
  */
 class Fact extends Part
 {
     protected $fillable = [
         'fact',
     ];
+
+    /**
+     * Converts the fact to a container with components.
+     *
+     * @return Container|null
+     */
+    public function toContainer(): ?Container
+    {
+        if (! isset($this->attributes['fact'])) {
+            return null;
+        }
+
+        return Container::new()->addComponent(TextDisplay::new($this->fact));
+    }
 }
