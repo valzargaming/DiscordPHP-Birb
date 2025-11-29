@@ -32,7 +32,7 @@ class SRA extends Discord
 {
     use HelperTrait;
 
-    public const string GITHUB = 'https://github.com/discord-php/DiscordPHP-SRA';
+    public const string GITHUB = 'https://github.com/valzargaming/DiscordPHP-SRA';
 
     protected Stats $stats;
 
