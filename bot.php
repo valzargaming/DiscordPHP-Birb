@@ -210,40 +210,36 @@ $func = function (SRA $sra) {
                 $name = 'birdfact',
                 fn (Interaction $interaction) => $interaction->acknowledgeWithResponse()
                     ->then(fn () => $sra->facts->bird())
-                    ->then(function (Fact $bird) use ($interaction): PromiseInterface {
-                        $builder = SRA::createBuilder();
-                        $container = $bird->toContainer();
-                        return $interaction->updateOriginalResponse(
-                            $builder->addComponent(
-                                $container->addComponents([
+                    ->then(
+                        fn (Fact $bird): PromiseInterface => $interaction->updateOriginalResponse(
+                            SRA::createBuilder()->addComponent(
+                                $bird->toContainer()->addComponents([
                                     Separator::new(),
                                     //ActionRow::new()->addComponents($buttons),
                                     //Separator::new(),
                                     Button::link(SRA::GITHUB)->setLabel('GitHub'),
                                 ])
                             )
-                        );
-                })
+                        )
+                    )
             );
 
             $sra->listenCommand(
                 $name = 'birdfactimage',
                 fn (Interaction $interaction) => $interaction->acknowledgeWithResponse()
                     ->then(fn () => $sra->animals->bird())
-                    ->then(function (Animal $bird) use ($interaction): PromiseInterface {
-                        $builder = SRA::createBuilder();
-                        $container = $bird->toContainer();
-                        return $interaction->updateOriginalResponse(
-                            $builder->addComponent(
-                                $container->addComponents([
+                    ->then(
+                        fn (Animal $bird): PromiseInterface => $interaction->updateOriginalResponse(
+                            SRA::createBuilder()->addComponent(
+                                $bird->toContainer()->addComponents([
                                     Separator::new(),
                                     //ActionRow::new()->addComponents($buttons),
                                     //Separator::new(),
                                     Button::link(SRA::GITHUB)->setLabel('GitHub'),
                                 ])
                             )
-                        );
-                })
+                        )
+                    )
             );
 
             static $slashcommands = [
