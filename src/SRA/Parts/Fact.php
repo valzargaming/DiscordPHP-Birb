@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace SRA\Parts;
 
 use Discord\Builders\Components\Container;
-use Discord\Builders\Components\MediaGallery;
 use Discord\Builders\Components\TextDisplay;
 use Discord\Parts\Part;
 
