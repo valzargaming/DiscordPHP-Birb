@@ -250,14 +250,14 @@ $func = function (SRA $sra) {
                     continue;
                 }
                 $sra->logger->debug("[GLOBAL APPLICATION COMMAND] Creating `$name` command...");
-                $builder = CommandBuilder::new()
+                $commands->save(CommandBuilder::new()
                     ->setName($name)
                     ->setType(Command::CHAT_INPUT)
                     ->setDescription($description)
                     ->setContext([Interaction::CONTEXT_TYPE_GUILD, Interaction::CONTEXT_TYPE_BOT_DM, Interaction::CONTEXT_TYPE_PRIVATE_CHANNEL])
                     ->addIntegrationType(Application::INTEGRATION_TYPE_GUILD_INSTALL)
-                    ->addIntegrationType(Application::INTEGRATION_TYPE_USER_INSTALL);
-                $commands->save($sra->application->commands->create($builder->toArray()));
+                    ->addIntegrationType(Application::INTEGRATION_TYPE_USER_INSTALL)
+                    ->create($commands));
             }
             //var_dump($command);
             //$commands->delete($command);
