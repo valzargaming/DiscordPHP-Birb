@@ -246,7 +246,6 @@ $func = function (SRA $sra) {
             ];
             foreach ($slashcommands as $name => $description) {
                 if ($command = $commands->get('name', $name)) {
-                    $sra->logger->debug("[GLOBAL APPLICATION COMMAND] `$name` command already exists.");
                     continue;
                 }
                 $sra->logger->debug("[GLOBAL APPLICATION COMMAND] Creating `$name` command...");
