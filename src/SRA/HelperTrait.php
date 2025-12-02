@@ -15,8 +15,6 @@ namespace SRA;
 
 use Discord\Builders\MessageBuilder;
 use Discord\Parts\Channel\Message\AllowedMentions;
-use Discord\Parts\Guild\Emoji;
-use Discord\Repository\EmojiRepository;
 
 trait HelperTrait
 {
@@ -39,100 +37,5 @@ trait HelperTrait
         }
 
         return $builder;
-    }
-
-    /**
-     * Converts a card's encapsulated name to its corresponding emoji representation.
-     * The name of the emoji should be stored in the application with a trailing underscore, e.g. U_.
-     *
-     * @param string $name The encapsulated name to convert, e.g. {U}.
-     *
-     * @return string The emoji representation of the encapsulated name.
-     *
-     * @since 0.4.0
-     */
-    public function encapsulatedSymbolsToEmojis(string $subject): string
-    {
-        preg_match_all('/\{([a-zA-Z0-9]+)\}/', $subject, $matches);
-        foreach ($matches as $array) {
-            foreach ($array as $search) {
-                if (str_starts_with($search, '{')) {
-                    continue;
-                }
-                if ($replaced = $this->__encapsulatedSymbolsToEmojis($subject, $search)) {
-                    $subject = $replaced;
-                    continue;
-                }
-            }
-        }
-
-        return $subject;
-    }
-
-    /**
-     * Converts encapsulated symbol placeholders within a string to their corresponding emoji representations.
-     *
-     * @param string $subject The input string containing symbol placeholders to be replaced.
-     * @param string $search  The symbol name to search for and replace with its emoji.
-     *
-     * @return string|null The string with symbols replaced by emojis, or null if no emoji is found.
-     *
-     * @since 0.4.0
-     */
-    public function __encapsulatedSymbolsToEmojis(string $subject, string $search): ?string
-    {
-        /** @var EmojiRepository $emojis */
-        $emojis = $this->emojis;
-
-        if (! $emoji = $emojis->get('name', $search.'_')) {
-            return null;
-        }
-
-        return self::encapsulated_emoji_str_replace($search, $emoji, $subject);
-    }
-
-    /**
-     * Replaces a placeholder in the given string with the string representation of an Emoji object.
-     *
-     * @param string $string The input string containing the placeholder.
-     * @param string $value  The value to be replaced, used as the placeholder inside curly braces.
-     * @param Emoji  $emoji  The Emoji object whose string representation will replace the placeholder.
-
-     * @return string The resulting string with the placeholder replaced by the emoji.
-     *
-     * @since 0.4.0
-     */
-    public static function encapsulated_emoji_str_replace(string $search, Emoji $emoji, string $subject): string
-    {
-        return str_replace('{'.$search.'}', (string) $emoji, $subject);
-    }
-
-    /**
-     * Converts a color identity string to its corresponding integer representation.
-     *
-     * @param string|null $identity The color identity string to convert.
-     *
-     * @return int|null
-     *
-     * @since 0.4.0
-     */
-    public static function colorIdentityToInteger(?string $identity): ?int
-    {
-        switch ($identity) {
-            case null:
-                return \Discord\COLORTABLE['gray'];
-            case 'W':
-                return \Discord\COLORTABLE['white'];
-            case 'U':
-                return \Discord\COLORTABLE['blue'];
-            case 'B':
-                return \Discord\COLORTABLE['black'];
-            case 'R':
-                return \Discord\COLORTABLE['red'];
-            case 'G':
-                return \Discord\COLORTABLE['green'];
-        }
-
-        return null;
     }
 }

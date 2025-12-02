@@ -37,7 +37,7 @@ $technician_id = getenv('technician_id') ?: '116927250145869826'; // Default to 
 
 ini_set('zend.assertions', '1'); // Enable assertions for development
 
-define('SRACARDINFOBOT_START', microtime(true));
+define('SRABOT_START', microtime(true));
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -89,7 +89,7 @@ $env_path ? loadEnv($env_path) : throw new \Exception('The .env file does not ex
 
 $streamHandler = new StreamHandler('php://stdout', Level::Debug);
 $streamHandler->setFormatter(new LineFormatter(null, null, true, true, true));
-$logger = new Logger('SRACARDINFOBOT', [$streamHandler]);
+$logger = new Logger('SRABOT', [$streamHandler]);
 //file_put_contents('output.log', ''); // Clear the contents of 'output.log'
 //$logger->pushHandler(new StreamHandler('output.log', Level::Debug));
 $logger->info('Loading configurations for the bot...');
